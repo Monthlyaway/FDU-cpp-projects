@@ -4,30 +4,24 @@
 
 using namespace std;
 
-void computeNext(vector<int>& nvec, const string& pattern) {
-	nvec.resize(pattern.size());
-	nvec[0] = -1;
-	int j = 0, k = -1;
+int kmp(string target, string pattern);
+void getNext(string str, vector<int>& vec);
+void getNextTest();
 
-	while (j < pattern.size() - 1) {
-		if (k == -1 || pattern[k] == pattern[j]) {
-			nvec[j + 1] = k + 1;
-			k++;
-			j++;
-		}
-		else {
-			k = nvec[k];
-		}
-	}
+int main(void) {
+	string target = "bcbd;fadnabcdaf";
+	string pattern = "abc";
+	cout << "Found pattern \"" << pattern
+		<< "\" at index " << kmp(target, pattern);
+
+	return 0;
 }
 
-int kmpMatch(const string& target, const string& pattern) {
-	int px = 0, tx = 0;
+int kmp(string target, string pattern) {
 	vector<int> nextVec;
-	computeNext(nextVec, pattern);
-	int psize = pattern.size();
-	int tsize = target.size();
-	while (px < psize && tx < tsize) {
+	getNext(pattern, nextVec);
+	int tx = 0, px = 0;
+	while (tx < target.size() && px < (int)pattern.size()) {
 		if (px == -1 || target[tx] == pattern[px]) {
 			tx++;
 			px++;
@@ -35,26 +29,33 @@ int kmpMatch(const string& target, const string& pattern) {
 		else {
 			px = nextVec[px];
 		}
-		cout << "px = " << px << " pattern.size() = " << pattern.size() << endl;
-		cout << "tx = " << tx << " target.size() = " << target.size() << endl;
-
 	}
 
-	if (px < psize) {
-		return -1;
-	}
-	else {
-		return tx - px;
+	return px < pattern.size() ? -1 : tx - pattern.size();
+}
+void getNext(string str, vector<int>& vec) {
+	vec.resize(str.size(), 0);
+	int jx = 0, k = -1;
+	vec[0] = -1;
+	while (jx < str.size() - 1) {
+		if (k == -1 || str[jx] == str[k]) {
+			jx++;
+			k++;
+			vec[jx] = k;
+		}
+		else {
+			k = vec[k];
+		}
 	}
 
 }
 
-int main(void) {
-	string target = "abacfadaaabaavbdfab";
-	string pattern = "abaa";
-
-	cout << "Found a match at index " << kmpMatch(target, pattern) << endl;
-
-
-	return 0;
+void getNextTest() {
+	string str = "abaabcac";
+	vector<int> next;
+	getNext(str, next);
+	for (auto u : next) {
+		cout << u << " ";
+	}
+	cout << endl;
 }
