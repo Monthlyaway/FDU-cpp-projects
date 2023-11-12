@@ -15,8 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data_Structure_Zhang_Yuejie\lecture\ch4\kmp.cpp">
+    <ClCompile Include="Data_Structure_Zhang_Yuejie\lecture\ch5\BinTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data_Structure_Zhang_Yuejie\lecture\ch5\testBinTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Data_Structure_Zhang_Yuejie\lecture\ch5\BinTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

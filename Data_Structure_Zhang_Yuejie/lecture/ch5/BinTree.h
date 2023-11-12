@@ -79,12 +79,26 @@ public:
 		start = nullptr;  // prevent dangling pointer
 	}
 
-	void preOrderRecur() {
-		preOrderRecur(_root);
-	}
+	
 
 	void preOrderRecur(NodePtr start) {
 		preOrderRecurHelper(start, 0);
+	}
+
+	void preOrderRecerParenth(NodePtr start) {
+		if (start) {
+			cout << start->_data;
+			if (start->_lc) {
+				cout << "(";
+				preOrderRecerParenth(start->_lc);
+				if (start->_rc)
+				{
+					cout << ",";
+					preOrderRecerParenth(start->_rc);
+				}
+				cout << ")";
+			}
+		}
 	}
 
 	void preOrderRecurHelper(NodePtr start, int depth) {
@@ -96,6 +110,10 @@ public:
 			preOrderRecurHelper(start->_rc, depth + 1);
 		}
 
+	}
+
+	void preOrderRecur() {
+		preOrderRecerParenth(_root);
 	}
 
 	void preOrderStack() {
@@ -244,7 +262,7 @@ public:
 		}
 		if (curr != '#') {
 			// curr is not an empty node
-			currNode = new Node(curr);
+			currNode = new Node<char>(curr);
 			preCreate(prev, currNode->_lc, n);
 			preCreate(prev, currNode->_rc, n);
 		}
@@ -290,6 +308,26 @@ public:
 		return newNode;
 	}
 
+	NodePtr createFromPostAndInArrayHelper(T* post, T* in, int n) {
+		if (!n) {
+			return nullptr;
+		}
+		Node<T>* parent = new Node<T>(post[n - 1]);
+		// find parent node in inorder
+		int ix = 0;
+		while (in[ix] != post[n - 1]) {
+			ix++;
+		}
+		parent->_lc = createFromPostAndInArrayHelper(post, in, ix);
+		parent->_rc = createFromPostAndInArrayHelper(post + ix, in + ix + 1, n - ix - 1);
+		return parent;
 
+	}
+
+	NodePtr createFromPostAndInArray(T* post, T* in) {
+		createFromPostAndInArrayHelper(post, in, n);
+	}
+
+	
 };
 

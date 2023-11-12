@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main(void) {
+void testBasic(void) {
 	char pre[] = "ABC##DE#G##F###";
 	BinTree<char> bt;
 	bt.preCreate(pre);
@@ -34,6 +34,21 @@ int main(void) {
 	char in[] = "HBDFAEKCG";
 	bt.createFromPreAndInArray(pre2, in, 9);
 	bt.preOrderRecur();
+}
+
+void testDisplay(void) {
+	char pre[] = "ABD##E##CF###";
+	BinTree<char> bt;
+	bt.preCreate(pre);
+	cout << "preorder traversal:" << endl;
+	bt.preOrderRecur();
+
+}
+
+int main(void) {
+	
+	testDisplay();
+
 
 	return 0;
 }

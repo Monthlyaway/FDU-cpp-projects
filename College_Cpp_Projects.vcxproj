@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data_Structure_Zhang_Yuejie\lecture\ch4\kmp.cpp" />
+    <ClCompile Include="Data_Structure_Zhang_Yuejie\lecture\ch5\BinTree.cpp" />
+    <ClCompile Include="Data_Structure_Zhang_Yuejie\lecture\ch5\testBinTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Data_Structure_Zhang_Yuejie\lecture\ch5\BinTree.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -107,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
